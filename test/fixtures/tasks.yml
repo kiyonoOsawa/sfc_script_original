@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  taskName: MyString
+  tryDay: 2025-01-01 12:27:01
+  deadDay: 2025-01-01 12:27:01
+  usder_id: 1
+
+two:
+  taskName: MyString
+  tryDay: 2025-01-01 12:27:01
+  deadDay: 2025-01-01 12:27:01
+  usder_id: 1

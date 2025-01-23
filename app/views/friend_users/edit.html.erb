@@ -1,0 +1,12 @@
+<% content_for :title, "Editing friend user" %>
+
+<h1>Editing friend user</h1>
+
+<%= render "form", friend_user: @friend_user %>
+
+<br>
+
+<div>
+  <%= link_to "Show this friend user", @friend_user %> |
+  <%= link_to "Back to friend users", friend_users_path %>
+</div>

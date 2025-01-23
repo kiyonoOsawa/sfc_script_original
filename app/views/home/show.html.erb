@@ -1,0 +1,6 @@
+<h1>ようこそ、<%= @user.name %> さん</h1>
+<p>メールアドレス: <%= @user.email %></p>
+
+<%= month_calendar do |date| %>
+    <%= date.day %>
+<% end %>
