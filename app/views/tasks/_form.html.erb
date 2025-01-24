@@ -29,6 +29,11 @@
   </div>
 
   <div>
+    <%= form.label :color, style: "display: block" %>
+    <%= form.select :color_id, @colors.map{|i| [i.name, i.id]} %>
+  </div>
+
+  <div>
     <%= form.submit "タスクを保存" %>
   </div>
 <% end %>

@@ -21,7 +21,7 @@
   <header>
     <% if logged_in? %>
       <p>こんにちは、<%= current_user.name %> さん</p>
-      <%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' } %>
+      <%# <%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' } %> 
     <% else %>
       <%= link_to 'ログイン', login_path %>
     <% end %>

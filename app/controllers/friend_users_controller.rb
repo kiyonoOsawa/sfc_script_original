@@ -4,6 +4,7 @@ class FriendUsersController < ApplicationController
   # GET /friend_users or /friend_users.json
   def index
     @friend_users = FriendUser.all
+    @users = User.all
   end
 
   # GET /friend_users/1 or /friend_users/1.json
@@ -21,30 +22,24 @@ class FriendUsersController < ApplicationController
 
   # POST /friend_users or /friend_users.json
   def create
-    @friend_user = FriendUser.new(friend_user_params)
+    @friend_users = FriendUser.all
+    @users = User.all
+    @user = User.find_by(params[:id])
 
-    respond_to do |format|
-      if @friend_user.save
-        format.html { redirect_to @friend_user, notice: "Friend user was successfully created." }
-        format.json { render :show, status: :created, location: @friend_user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @friend_user.errors, status: :unprocessable_entity }
-      end
-    end
+    @make_friend = FriendUser.new(friend_id: @user.id, user_id: current_user.id)
   end
 
   # PATCH/PUT /friend_users/1 or /friend_users/1.json
   def update
-    respond_to do |format|
-      if @friend_user.update(friend_user_params)
-        format.html { redirect_to @friend_user, notice: "Friend user was successfully updated." }
-        format.json { render :show, status: :ok, location: @friend_user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @friend_user.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @friend_user.update(friend_user_params)
+    #     format.html { redirect_to @friend_user, notice: "Friend user was successfully updated." }
+    #     format.json { render :show, status: :ok, location: @friend_user }
+    #   else
+    #     format.html { render :edit, status: :unprocessable_entity }
+    #     format.json { render json: @friend_user.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /friend_users/1 or /friend_users/1.json
@@ -57,14 +52,18 @@ class FriendUsersController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_friend_user
-      @friend_user = FriendUser.find(params[:id])
-    end
+  # private
+  #   # Use callbacks to share common setup or constraints between actions.
+  #   def set_friend_user
+  #     @friend_user = FriendUser.find(params[:id])
+  #   end
 
-    # Only allow a list of trusted parameters through.
-    def friend_user_params
-      params.require(:friend_user).permit(:user_id, :friend_id)
-    end
+  #   # Only allow a list of trusted parameters through.
+  #   def friend_user_params
+  #     params.require(:friend_user).permit(:user_id, :friend_id)
+  #   end
+
+  def follow
+    FriendUser.create(friend_id: params[:id], user_id: current_user.id)
+  end
 end

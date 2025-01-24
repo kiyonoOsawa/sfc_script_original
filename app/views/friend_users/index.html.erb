@@ -5,11 +5,21 @@
 <h1>Friend users</h1>
 
 <div id="friend_users">
-  <% @friend_users.each do |friend_user| %>
-    <%= render friend_user %>
-    <p>
-      <%= link_to "Show this friend user", friend_user %>
-    </p>
+  <% if @friend_user.variable %>
+    <% @friend_users.each do |friend_user| %>
+      <%= render friend_user %>
+      <p>
+        <%= link_to "Show this friend user", friend_user %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>友達はいません</p>
+    <% @users.each do |user| %>
+      <%= render user %>
+      <p>
+        <%= link_to "Show All Users", user %>
+      </p>
+    <% end %>
   <% end %>
 </div>
 

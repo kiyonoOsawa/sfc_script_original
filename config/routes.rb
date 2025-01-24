@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  root "home#index"
+  resources :teams
+  resources :friends
+  root "users#new"
   # resources :home
   resources :team_users
-  resources :friend_users
+  resources :friends
   resources :tasks
-  resources :users
-  resources :sessions, only: [ :new, :create, :destroy ]
+  # resources :users, only: [ :index, :show, :new ]
+  resources :sessions, only: [ :new, :create, :destroy, :logout ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -21,11 +23,19 @@ Rails.application.routes.draw do
   resources :home do
     member do
       get "task/new", to: "tasks#new", as: "new_task"
+      get "users", to: "users#index"
+      get "friends", to: "friends#index"
+    end
+  end
+
+  resources :users do
+    member do
+      post :make_friend
     end
   end
 
   get "login", to: "sessions#new"
-  delete "logout", to: "sessions#destroy"
+  delete "logout", to: "users#logout"
 
   # match "/signup",  to: "users#new"
   # Defines the root path route ("/")

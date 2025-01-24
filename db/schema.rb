@@ -10,12 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_23_090309) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_24_085514) do
+  create_table "colors", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "display_name"
+  end
+
   create_table "friend_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "friend_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -25,9 +40,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_23_090309) do
     t.datetime "start_time"
     t.integer "user_id"
     t.string "content"
+    t.string "color_id"
   end
 
   create_table "team_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
     t.integer "user_id"
     t.integer "task_id"
     t.datetime "created_at", null: false

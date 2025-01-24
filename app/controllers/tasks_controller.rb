@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @user_id = current_user.id
+    @colors = Color.all
     puts "aaa"
     puts @user_id
   end
@@ -27,8 +28,10 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
+
     respond_to do |format|
       if @task.save
+
         # HomeController#index にリダイレクト
         format.html { redirect_to root_path, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
@@ -72,6 +75,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:taskName, :start_time, :content, :user_id)
+      params.require(:task).permit(:taskName, :start_time, :content, :user_id, :color_id)
     end
 end

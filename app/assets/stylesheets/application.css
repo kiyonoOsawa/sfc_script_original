@@ -1,22 +1,117 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- *= require simple_calendar
- */
+    /*
+    * This is a manifest file that'll be compiled into application.css, which will include all the files
+    * listed below.
+    *
+    * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+    * vendor/assets/stylesheets directory can be referenced here using a relative path.
+    *
+    * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+    * compiled file so the styles you add here take precedence over styles defined in any other CSS
+    * files in this directory. Styles in this file should be added after the last require_* statement.
+    * It is generally better to create a new file per style scope.
+    *
+    *= require_tree .
+    *= require_self
+    *= require simple_calendar
+    */
 
- .task_sheal {
+    .task_sheal {
+        width: 100%;
+        color: #fff;
+        background: #000000;
+        margin-bottom: 2pt;
+    }
+
+    a,a:hover,a:visited{
+        color: inherit;
+    }
+/* app/assets/stylesheets/application.css */
+
+/* 以下にsimple_calendarのカスタムCSSを追加 */
+
+/* Calendar Container */
+.simple-calendar {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Calendar Heading */
+  .simple-calendar .calendar-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .simple-calendar .calendar-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Navigation links in the heading */
+  .simple-calendar nav {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .simple-calendar nav a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1em;
+    font-weight: normal;
+  }
+  
+  .simple-calendar nav a:hover {
+    color: #0056b3;
+  }
+  
+  /* Table for calendar days */
+  .simple-calendar table {
     width: 100%;
-    background: #000000;
-    margin-bottom: 2pt;
- }
+    border-collapse: collapse;
+  }
+  
+  .simple-calendar th, .simple-calendar td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .simple-calendar th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .simple-calendar td {
+    padding: 0;
+    background-color: #fff;
+    color: #555;
+    border: 1px solid #ddd;
+    /* padding: none; */
+  }
+  
+  .simple-calendar td:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  /* Adding events inside each day cell */
+  .simple-calendar td .event {
+    display: block;
+    padding: 5px;
+    margin-top: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 0.85em;
+    border-radius: 4px;
+  }
+  
+  .simple-calendar td .event:hover {
+    background-color: #0056b3;
+  }
+  

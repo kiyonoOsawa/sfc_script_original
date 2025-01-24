@@ -3,25 +3,14 @@ class SessionsController < ApplicationController
     # ログインフォームを表示
   end
 
-  # def create
-  #   user = User.find_by(email: params[:email])
-  #   if user&.authenticate(params[:password]) # has_secure_passwordを使用
-  #     session[:user_id] = user.id
-  #     redirect_to home_path(user), notice: "ログインに成功しました。"
-  #   else
-  #     flash.now[:alert] = "メールアドレスまたはパスワードが間違っています。"
-  #     render :new
-  #   end
-  # end
-
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in(user)
-      redirect_to user
+    user = User.find_by(email: params[:email])
+    if user&.authenticate(params[:password]) # has_secure_passwordを使用
+      session[:user_id] = user.id
+      redirect_to home_path(user), notice: "ログインに成功しました。"
     else
-      flash.now[:danger] = "Invalid email/password combination"
-      render "new"
+      flash.now[:alert] = "メールアドレスまたはパスワードが間違っています。"
+      render :new
     end
   end
 
