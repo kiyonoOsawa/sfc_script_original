@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :teams
   resources :friends
-  root "users#new"
+  root "home#index"
   # resources :home
   resources :team_users
   resources :friends
